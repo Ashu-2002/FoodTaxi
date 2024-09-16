@@ -5,6 +5,7 @@
     border-bottom: 2px solid black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
+    background-color: white;
     /* box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08); */
 }
 
@@ -12,6 +13,10 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(241, 241, 241);
     padding: 10px;
+}
+
+body{
+    background-color: #f0f0f0;
 }
 
 .logo {
@@ -39,6 +44,11 @@
 .nav-items > ul > li {
     margin: 10px;
     list-style-type: none;
+}
+
+.nav-items > ul > li > a {
+    text-decoration: none;
+    color:black
 }
 
 .search {
