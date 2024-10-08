@@ -1,66 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/resMockData";
 import { useEffect, useState } from "react";
-
-let threeResData = [{
-    info: {
-      "id": "326931",
-      name: "Chinese Wok",
-      "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
-      "locality": "Late GA Kulkarni Path",
-      "areaName": "Kothrud",
-      "costForTwo": "₹300 for two",
-      "cuisines": [
-        "Chinese",
-        "Asian",
-        "Tibetan",
-        "Desserts"
-      ],
-      "avgRating": 4.2,
-      "avgRatingString": "4.2",
-      "sla": {
-        "deliveryTime": 40,
-      }
-    }},{
-  info: {
-    "id": "36931",
-    name: "Chinese Wok",
-    "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
-    "locality": "Late GA Kulkarni Path",
-    "areaName": "Kothrud",
-    "costForTwo": "₹300 for two",
-    "cuisines": [
-      "Chinese",
-      "Asian",
-      "Tibetan",
-      "Desserts"
-    ],
-    "avgRating": 4.2,
-    "avgRatingString": "4.2",
-    "sla": {
-      "deliveryTime": 40,
-    }
-}},{
-info: {
-  "id": "32691",
-  name: "Chinese Wok",
-  "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
-  "locality": "Late GA Kulkarni Path",
-  "areaName": "Kothrud",
-  "costForTwo": "₹300 for two",
-  "cuisines": [
-    "Chinese",
-    "Asian",
-    "Tibetan",
-    "Desserts"
-  ],
-  "avgRating": 3.9,
-  "avgRatingString": "4.2",
-  "sla": {
-    "deliveryTime": 40,
-  }
-}}
-];
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -108,7 +49,7 @@ const Body = () => {
         </div>
         <div className="res-container">
             {
-              filteredList.map(restaurant => <RestaurantCard key={restaurant.info.id} resData = {restaurant}/>)
+              filteredList.map(restaurant => <Link to={"/restaurants/" + restaurant.info.id} key={restaurant.info.id}><RestaurantCard resData = {restaurant}/></Link>)
             }
         </div>
     </div>
