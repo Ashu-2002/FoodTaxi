@@ -16,8 +16,8 @@ const RestaurantMenuCard = (item) => {
                 <div className="font-semibold m-1"> ₹ {price/100 || defaultPrice/100}</div>
                 <div className=" font-light m-1">{description}</div>
             </div>
-            <div className="w-40">
-                <img className=" rounded-lg" src={MENU_ITEM_IMG + imageId}/>
+            <div className="w-40 h-40  object-fill overflow-hidden rounded-lg ">
+                <img className="rounded-lg" src={MENU_ITEM_IMG + imageId}/>
             </div>
         </div>
     );
