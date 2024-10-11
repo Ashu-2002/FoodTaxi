@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import RestaurantMenuCard from "./RestaurantMenuCard";
 import { FaStar } from "react-icons/fa6";
 import { RES_INFO_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import MenuCategory from "./MenuCategory";
+import MenuCategoryNested from "./MenuCategoryNested";
 
 const RestaurantMenu = () => {
     const [resInfo, setResInfo] = useState(null);
+    const [expandedMenuIndex, setExpandedMenuIndex] = useState(0);
     const { resId } = useParams();
 
     useEffect(() => {
@@ -25,8 +27,13 @@ const RestaurantMenu = () => {
     const resDetails = resInfo?.data?.cards[2]?.card?.card?.info;
     // console.log(resDetails);
     const {itemCards} = resInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
-    
-
+    // console.log(resInfo);
+    const categories = resInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter((c) => {
+       return c.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || c.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory";
+    // c.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+    });
+    //console.log(categories);
+    // console.log(itemCards);
     return (
     <div className="w-1/2 m-auto p-4 ">
         <div className="m-2">
@@ -36,15 +43,13 @@ const RestaurantMenu = () => {
             <div className="text-md font-semibold flex items-center"><FaStar className="mr-1"/> {resDetails.avgRatingString}</div>
         </div>
         <hr className="h-2"/>
-        <h3 className="text-2xl font-semibold m-2 text-center">Menu</h3>
-
+        <h3 className="text-2xl font-semibold mb-4 mx-2 text-center">Menu</h3>
         <div className="">
-            <ul>
-                {/* {console.log(itemCards[1])} */}
-                {itemCards.map((item) => {
-                    return <li key={item.id}><RestaurantMenuCard item = {item}/> </li>;
-                })}
-            </ul>
+            {categories.map((category, index) => {
+                return category.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ? 
+                 <MenuCategory key={category.card.card.title} category={category} isExpanded={expandedMenuIndex === index} setExpandedMenuIndex={() => setExpandedMenuIndex(index)} /> :
+                 <MenuCategoryNested key={category.card.card.title} category={category} isExpanded={expandedMenuIndex === index} setExpandedMenuIndex={() => setExpandedMenuIndex(index)}/>
+            })}
         </div>
     </div>
     );

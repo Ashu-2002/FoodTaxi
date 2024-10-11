@@ -5,37 +5,23 @@ import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
-
-const oneResData = {
-    "info": {
-      "id": "326931",
-      "name": "Chinese Wok",
-      "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
-      "locality": "Late GA Kulkarni Path",
-      "areaName": "Kothrud",
-      "costForTwo": "₹300 for two",
-      "cuisines": [
-        "Chinese",
-        "Asian",
-        "Tibetan",
-        "Desserts"
-      ],
-      "avgRating": 4.2,
-      "avgRatingString": "4.2",
-      "sla": {
-        "deliveryTime": 40,
-      }
-  }
-};
+import {StrictMode} from "react";
+import {Provider} from "react-redux";
+import appStore from "./utils/appStore";
 
 const AppLayout = () => (
-    <div className="app">
-        <Header/>
-        <Outlet/>
-        {/* <Footer/> */}
-    </div>
+  <Provider store={appStore}>
+    <StrictMode>
+      <div className="app">
+          <Header/>
+          <Outlet/>
+          {/* <Footer/> */}
+      </div>
+    </StrictMode>
+  </Provider>
 );
       
 const appRouter = createBrowserRouter([
@@ -58,7 +44,11 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu/>
-      }
+      },
+      {
+        path:"/cart",
+        element: <Cart/>
+      },
     ],
     errorElement: <Error/>
   },
