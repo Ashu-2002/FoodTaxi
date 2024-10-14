@@ -14,7 +14,7 @@ const Cart = () => {
     
     return (
         <div className="w-1/2 mx-auto">
-            <div className="text-3xl mb-4 mt-10 mx-2 px-6 font-bold flex justify-between">
+            <div className="text-3xl mb-4 mt-10 mx-2 px-6 font-bold flex justify-between items-center">
                 <div className="flex items-center">
                     <div>Cart</div> 
                     <div className="mx-2"><MdOutlineShoppingCart/></div>

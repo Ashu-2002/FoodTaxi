@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Header = () => {
-    const cartItems = useSelector((store) => store.cart.items);
+    const totalQuantity = useSelector((store) => store.cart.totalQuantity);
     // console.log(cartItems);
     return (
     <div className="font-segoe font flex justify-between items-center border-b-2 border-black shadow-xl">
@@ -23,7 +23,7 @@ const Header = () => {
                     <Link to="/cart">
                         <div className="flex items-center">
                             <MdOutlineShoppingCart/>
-                            <div className="text-sm font-bold">{cartItems.length}</div>
+                            <div className="text-sm font-bold">{totalQuantity}</div>
                         </div>
                     </Link>
                 </li>
